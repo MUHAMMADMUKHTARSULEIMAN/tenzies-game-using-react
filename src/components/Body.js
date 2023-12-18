@@ -16,13 +16,13 @@ export default function Body() {
   const toggle = name => {
     setState(prevState => {
       return prevState.map(state => {
-        return state.name === name ? {...state, state: !state.on} : state;
+        return state.name === name ? {...state, on: !state.on} : state;
       })
     })
   }
 
   const rollDice = e => {
-    e.preventDefault;
+    e.preventDefault();
     for(let i = 0; i < diceArray; i++) {
       if(diceArray[i].on) {
         diceArray[i].value = Math.ceil(Math.random() * 6);
@@ -42,11 +42,18 @@ export default function Body() {
   
   return (
     <div id="body">
-      <p>
-        Roll until all dice are the same.Click each die to freeze it at its current value between rolls.
-      </p>
+      <div id="text-container">
+        <p>
+          Roll until all dice are the same.Click each die to freeze it at its current value between rolls.
+        </p>
+      </div>
+
       <div id="die-container">
         {diceMap}
+      </div>
+
+      <div id="button-container">
+
       </div>
     </div>
   )
