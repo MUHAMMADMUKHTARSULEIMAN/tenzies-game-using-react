@@ -3,11 +3,11 @@ import Die from "./Die";
 
 export default function Body() {
   let diceArray = [];
-  const numOfDice = parseInt(prompt("Choose an even number between 1 and 100 for the number of dice"));
 
+  const numOfDice = parseInt(prompt("Choose an even number between 1 and 100 for the number of dice"));
   if(numOfDice >= 2 && numOfDice <= 100) {
     for(let i = 1; i <= numOfDice; i++) {
-      diceArray.push({name: "Die " + [i], on: true});
+      diceArray.push({name: "Die " + [i], value: "", on: true});
     };
   };
   
@@ -24,23 +24,11 @@ export default function Body() {
   const rollDice = () => {
     for(let i = 0; i < diceArray; i++) {
       if(diceArray[i].on) {
-        const rolledNumber = Math.ceil(Math.random() * 6);
+        diceArray[i].value = Math.ceil(Math.random() * 6);
       }
     }
   }
   
-
-
-  // const diceMap = diceArray.map(datum => {
-  //   datum = true
-  //   return <Die
-  //   key={datum}
-  //   onClick={() => {
-  //     !datum;
-      
-  //   }}
-  //   />
-  // })
   return (
     <div id="body">
       <p>
