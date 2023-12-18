@@ -21,7 +21,8 @@ export default function Body() {
     })
   }
 
-  const rollDice = () => {
+  const rollDice = e => {
+    // e.preventDefault;
     for(let i = 0; i < diceArray; i++) {
       if(diceArray[i].on) {
         diceArray[i].value = Math.ceil(Math.random() * 6);
@@ -30,11 +31,13 @@ export default function Body() {
   }
 
   const diceMap = diceArray.map(die => {
+    return (
     <Die
     toggle={toggle}
     key={die.name}
     {...die}
     />
+    )
   })
   
   return (
@@ -43,7 +46,7 @@ export default function Body() {
         Roll until all dice are the same.Click each die to freeze it at its current value between rolls.
       </p>
       <div id="die-container">
-        {/* {diceMap} */}
+        {diceMap}
       </div>
     </div>
   )
