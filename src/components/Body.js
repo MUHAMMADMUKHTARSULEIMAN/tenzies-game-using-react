@@ -28,6 +28,14 @@ export default function Body() {
       }
     }
   }
+
+  const diceMap = diceArray.map(die => {
+    <Die
+    toggle={toggle}
+    key={die.name}
+    {...die}
+    />
+  })
   
   return (
     <div id="body">
