@@ -7,32 +7,36 @@ export default function Body() {
 
   if(numOfDice >= 2 && numOfDice <= 100) {
     for(let i = 1; i <= numOfDice; i++) {
-      diceArray.push({name: "Die " + [i], value: true});
+      diceArray.push({name: "Die " + [i], on: true});
     };
   };
   
-  // const [toggle, setToggle] = useState(true);
-  // const handleChange = e => {
+  const [state, setState] = useState(diceArray);
 
-  }
-
-  const diceMap = diceArray.map(datum => {
-    datum = true
-    return <Die
-    key={datum}
-    onClick={() => {
-      !datum;
-      
-    }}
-    />
+  setState(prevState => {
+    return prevState.map(state => {
+      return state.name === name ? {...state, state: !state.on} : state;
+    })
   })
+
+
+  // const diceMap = diceArray.map(datum => {
+  //   datum = true
+  //   return <Die
+  //   key={datum}
+  //   onClick={() => {
+  //     !datum;
+      
+  //   }}
+  //   />
+  // })
   return (
     <div id="body">
       <p>
         Roll until all dice are the same.Click each die to freeze it at its current value between rolls.
       </p>
       <div id="die-container">
-        {diceMap}
+        {/* {diceMap} */}
       </div>
     </div>
   )
