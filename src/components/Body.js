@@ -22,7 +22,11 @@ export default function Body() {
   }
 
   const rollDice = () => {
-    
+    for(let i = 0; i < diceArray; i++) {
+      if(diceArray[i].on) {
+        const rolledNumber = Math.ceil(Math.random() * 6);
+      }
+    }
   }
   
 
