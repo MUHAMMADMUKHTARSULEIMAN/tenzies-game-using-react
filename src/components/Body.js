@@ -22,7 +22,7 @@ export default function Body() {
   }
 
   const rollDice = e => {
-    // e.preventDefault;
+    e.preventDefault;
     for(let i = 0; i < diceArray; i++) {
       if(diceArray[i].on) {
         diceArray[i].value = Math.ceil(Math.random() * 6);
