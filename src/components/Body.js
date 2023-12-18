@@ -11,10 +11,10 @@ export default function Body() {
     };
   };
   
-  const [state, setState] = useState(diceArray);
+  const [dice, setDice] = useState(diceArray);
 
   const toggle = name => {
-    setState(prevState => {
+    setDice(prevState => {
       return prevState.map(state => {
         return state.name === name ? {...state, on: !state.on} : state;
       })
@@ -23,14 +23,14 @@ export default function Body() {
 
   const rollDice = e => {
     e.preventDefault();
-    for(let i = 0; i < diceArray; i++) {
-      if(diceArray[i].on) {
-        diceArray[i].value = Math.ceil(Math.random() * 6);
+    for(let i = 0; i < dice; i++) {
+      if(dice[i].on) {
+        dice[i].value = Math.ceil(Math.random() * 6);
       }
     }
   }
 
-  const diceMap = diceArray.map(die => {
+  const diceMap = dice.map(die => {
     return (
     <Die
     toggle={toggle}
@@ -51,10 +51,8 @@ export default function Body() {
       <div id="die-container">
         {diceMap}
       </div>
-
-      <div id="button-container">
-
-      </div>
+      
+      <button onClick={rollDice}>Roll</button>
     </div>
   )
 };
