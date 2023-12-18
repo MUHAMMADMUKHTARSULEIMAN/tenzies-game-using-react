@@ -13,11 +13,18 @@ export default function Body() {
   
   const [state, setState] = useState(diceArray);
 
-  setState(prevState => {
-    return prevState.map(state => {
-      return state.name === name ? {...state, state: !state.on} : state;
+  const toggle = name => {
+    setState(prevState => {
+      return prevState.map(state => {
+        return state.name === name ? {...state, state: !state.on} : state;
+      })
     })
-  })
+  }
+
+  const rollDice = () => {
+    
+  }
+  
 
 
   // const diceMap = diceArray.map(datum => {
