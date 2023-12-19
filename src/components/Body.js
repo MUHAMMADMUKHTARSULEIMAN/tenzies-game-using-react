@@ -42,7 +42,7 @@ export default function Body() {
   }
 
   const allEqual = arr => arr.every(v => v.value === arr[0].value);
-  const allNotZero = arr => arr.every(v => v.value !== 0);
+  // const allNotZero = arr => arr.every(v => v.value !== 0);
   const allFalse = arr => arr.every(v => v.on === false);
 
   const diceMap = dice.map(die => {
@@ -69,7 +69,7 @@ export default function Body() {
       </div>
 
       <div id="button-container">
-        <button onClick={allEqual(dice) && allNotZero(dice) && allFalse(dice) ? resetGame : rollDice}>{allEqual(dice) && allNotZero(dice) && allFalse(dice) ? "Reset Game" : "Roll"}</button>
+        <button onClick={allEqual(dice) && allFalse(dice) ? resetGame : rollDice}>{allEqual(dice) && allFalse(dice) ? "Reset Game" : "Roll"}</button>
       </div>
     </div>
   );
