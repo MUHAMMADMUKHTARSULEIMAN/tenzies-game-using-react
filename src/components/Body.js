@@ -7,7 +7,7 @@ export default function Body() {
   const numOfDice = 10;
   if(numOfDice >= 10 && numOfDice <= 100 && numOfDice % 2 === 0) {
       for(let i = 1; i <= numOfDice; i++) {
-        diceArray.push({name: "Die " + [i], value: 0, on: true});
+        diceArray.push({name: "Die " + [i], value: "", on: true});
       };
     };
   
@@ -43,6 +43,7 @@ export default function Body() {
 
   const allEqual = arr => arr.every(v => v.value === arr[0].value);
   const allNotZero = arr => arr.every(v => v.value !== 0);
+  const allFalse = arr => arr.every(v => v.on === false);
 
   const diceMap = dice.map(die => {
     return (
@@ -59,7 +60,7 @@ export default function Body() {
     <div id="body">
       <div id="text-container">
         <p>
-          Roll until all dice are the same.Click each die to freeze it at its current value between rolls.
+          Roll until all dice are the same. Click each die to freeze it at its current value between rolls.
         </p>
       </div>
 
@@ -67,7 +68,9 @@ export default function Body() {
         {diceMap}
       </div>
 
-      <button onClick={allEqual(dice) && allNotZero(dice) ? resetGame : rollDice}>{allEqual(dice) && allNotZero(dice) ? "Reset Game" : "Roll"}</button>
+      <div id="button-container">
+        <button onClick={allEqual(dice) && allNotZero(dice) && allFalse(dice) ? resetGame : rollDice}>{allEqual(dice) && allNotZero(dice) && allFalse(dice) ? "Reset Game" : "Roll"}</button>
+      </div>
     </div>
   );
 };
