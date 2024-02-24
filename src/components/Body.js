@@ -5,9 +5,9 @@ export default function Body() {
   let diceArray = [];
 
   const numOfDice = 10;
-  if(numOfDice >= 10 && numOfDice <= 100 && numOfDice % 2 === 0) {
+  if(numOfDice >= 10 && numOfDice <= 100 && numOfDice % 5 === 0) {
       for(let i = 1; i <= numOfDice; i++) {
-        diceArray.push({name: "Die " + [i], value: "", on: true});
+        diceArray.push({name: "Die " + [i], value: 0, on: true});
       };
     };
   
