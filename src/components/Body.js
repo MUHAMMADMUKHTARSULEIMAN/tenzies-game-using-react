@@ -10,13 +10,13 @@ export default function Body() {
   const numOfDice = 10;
   if(numOfDice >= 10 && numOfDice <= 100 && numOfDice % 5 === 0) {
       for(let i = 1; i <= numOfDice; i++) {
-        diceArray.push({name: "Die " + [i], value: 0, on: true});
+        diceArray.push({name: "Die " + [i], value: "", on: true});
       };
     };
   
   const [dice, setDice] = useState(diceArray);
   const allEqual = arr => arr.every(v => v.value === arr[0].value);
-  const allNotZero = arr => arr.every(v => v.value !== 0);
+  // const allNotZero = arr => arr.every(v => v.value !== 0);
   const allFalse = arr => arr.every(v => v.on === false);
 
   const toggle = name => {
@@ -63,7 +63,7 @@ export default function Body() {
   
   return (
     <div id="body">
-      {allEqual(dice) && allFalse(dice) && allNotZero(dice) && <Confetti width={width} height={height}/>}
+      {allEqual(dice) && allFalse(dice) && <Confetti width={width} height={height} recycle={false} />}
 
       <div id="text-container">
         <p>
@@ -76,7 +76,7 @@ export default function Body() {
       </div>
 
       <div id="button-container">
-        <button onClick={allEqual(dice) && allFalse(dice) && allNotZero(dice) ? resetGame : rollDice}>{allEqual(dice) && allFalse(dice) && allNotZero(dice) ? "Reset Game" : "Roll"}</button>
+        <button onClick={allEqual(dice) && allFalse(dice) ? resetGame : rollDice}>{allEqual(dice) && allFalse(dice) ? "Reset Game" : "Roll"}</button>
       </div>
     </div>
   );
