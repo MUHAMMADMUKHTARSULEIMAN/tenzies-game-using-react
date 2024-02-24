@@ -52,6 +52,7 @@ button {
   background-color: rgb(55, 0, 255);
   padding: 15px;
   text-align: center;
+  cursor: pointer;
   color: white;
   min-width: 100px;
   min-height: 50px;
