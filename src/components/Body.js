@@ -63,7 +63,7 @@ export default function Body() {
   
   return (
     <div id="body">
-      {allEqual(dice) && allFalse(dice) && <Confetti width={width} height={height} recycle={false} />}
+      {allEqual(dice) && allFalse(dice) && <Confetti width={width} height={height} recycle={false}/>}
 
       <div id="text-container">
         <p>
