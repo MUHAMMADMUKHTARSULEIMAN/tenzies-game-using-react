@@ -1,8 +1,11 @@
+import Confetti from "react-confetti"
+import {useWindowSize} from "react-use"
 import {useState} from "react";
 import Die from "./Die";
 
 export default function Body() {
   let diceArray = [];
+  const{width, height} = useWindowSize()
 
   const numOfDice = 10;
   if(numOfDice >= 10 && numOfDice <= 100 && numOfDice % 5 === 0) {
@@ -12,6 +15,9 @@ export default function Body() {
     };
   
   const [dice, setDice] = useState(diceArray);
+  const allEqual = arr => arr.every(v => v.value === arr[0].value);
+  const allNotZero = arr => arr.every(v => v.value !== 0);
+  const allFalse = arr => arr.every(v => v.on === false);
 
   const toggle = name => {
     setDice(prevDie => {
@@ -27,6 +33,7 @@ export default function Body() {
         return die.on === true ? {...die, value: Math.ceil(Math.random() * 6)} : die;
       });
     });
+
     // for(let i = 0; i < dice.length; i++) {
     //   if(dice[i].on === true) {
     //     dice[i].value = Math.ceil(Math.random() * 6);
@@ -41,10 +48,6 @@ export default function Body() {
     window.location.reload();
   }
 
-  const allEqual = arr => arr.every(v => v.value === arr[0].value);
-  // const allNotZero = arr => arr.every(v => v.value !== 0);
-  const allFalse = arr => arr.every(v => v.on === false);
-
   const diceMap = dice.map(die => {
     return (
     <Die
@@ -54,10 +57,14 @@ export default function Body() {
     />
     );
   });
+
+  
   
   
   return (
     <div id="body">
+      {allEqual(dice) && allFalse(dice) && allNotZero(dice) && <Confetti width={width} height={height}/>}
+
       <div id="text-container">
         <p>
           Roll until all dice are the same. Click each die to freeze it at its current value between rolls.
@@ -69,7 +76,7 @@ export default function Body() {
       </div>
 
       <div id="button-container">
-        <button onClick={allEqual(dice) && allFalse(dice) ? resetGame : rollDice}>{allEqual(dice) && allFalse(dice) ? "Reset Game" : "Roll"}</button>
+        <button onClick={allEqual(dice) && allFalse(dice) && allNotZero(dice) ? resetGame : rollDice}>{allEqual(dice) && allFalse(dice) && allNotZero(dice) ? "Reset Game" : "Roll"}</button>
       </div>
     </div>
   );
